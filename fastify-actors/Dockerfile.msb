@@ -4,7 +4,9 @@ COPY package*.json ./
 RUN npm install --production
 COPY . .
 
-FROM gcr.io/distroless/nodejs20-debian11
+FROM node:20-slim
 WORKDIR /app
 COPY --from=builder /app .
-CMD ["app.js"]
+
+CMD ["node", "app.js"]
+
